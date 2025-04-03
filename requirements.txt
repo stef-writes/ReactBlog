@@ -1,0 +1,330 @@
+Content for Challenge 1: Implement the Blog Post Listing Feature
+Content for Challenge 1: Implement the Blog Post Listing Feature.......................................1
+Detailed Requirements for the Blog Post Listing Feature........................................................1
+Component Structure and Architecture...................................................................................3
+BlogPostItem Component..................................................................................................3
+BlogPostList Component...................................................................................................3
+Architecture Notes.............................................................................................................4
+UI/UX Designs for Desktop and Mobile Views.........................................................................4
+Desktop View (1200px and above)....................................................................................5
+Tablet View (769px to 1199px)...........................................................................................5
+Mobile View (up to 768px).................................................................................................5
+Visual Notes.......................................................................................................................6
+Usage Example.......................................................................................................................6
+Detailed Requirements for the Blog Post Listing Feature
+The blog post listing feature is a core component of a blog application, designed to present a
+collection of blog posts to users in an organized and visually appealing manner. The following
+requirements outline the functionality and behavior expected:
+-
+Content Display:
+-
+Each blog post in the list must display the following elements:
+-
+Title: The headline of the blog post, prominently displayed and clickable
+to navigate to the full post.
+-
+Summary: A brief excerpt or description of the post’s content, limited to
+plain text (no HTML), approximately 50-100 words.
+-
+Publication Date: The date the post was published, formatted as "Month
+Day, Year" (e.g.,
+"January 1, 2023").
+-
+All three elements must be visible for each post without truncation unless
+specified by design constraints.
+-
+Responsiveness:
+-
+The layout must adapt to different screen sizes:
+-
+Mobile Devices (up to 768px): Display the list in a single-column layout.
+-
+Tablet Devices (769px to 1199px): Display the list in a two-column
+layout.
+-
+Desktop Devices (1200px and above): Display the list in a three-column
+layout.
+-
+The transition between layouts should be seamless, with appropriate spacing
+(e.g., 20px gaps between items) to maintain readability.
+-
+Data Handling:
+-
+The list will receive an array of blog post objects, each containing:
+-
+id: A unique identifier (string or number) for the post.
+-
+title: The post’s title (string).
+-
+summary: The post’s summary (string).
+-
+date: The publication date (string in ISO format, e.g.,
+"2023-01-01"
+, or a
+Date object).
+-
+url: The path to the full post (string, e.g.,
+"/posts/123").
+-
+If the array is empty, display a user-friendly message: "No blog posts available.
+"
+-
+Interactivity:
+-
+The title of each post must be a clickable link that navigates to the full post using
+the provided url.
+-
+Navigation should leverage React Router’s Link component to ensure
+single-page application behavior.
+-
+Accessibility:
+-
+Use semantic HTML (e.g., <h2> for titles, <p> for summaries and dates) to
+ensure compatibility with screen readers.
+-
+Ensure the clickable title is announced as a link by assistive technologies.
+-
+Styling:
+-
+Styles must align with the provided UI/UX designs (see below).
+-
+Use CSS modules to scope styles to components and prevent conflicts.
+-
+Apply consistent typography, colors, and spacing as specified in the designs.
+-
+Assumptions:
+-
+The parent component provides the array of blog posts as a prop; no data
+fetching is required within the listing components.
+-
+The feature focuses on display; additional functionalities like sorting or pagination
+are out of scope unless specified.
+Component Structure and Architecture
+The blog post listing feature is implemented using two React components: BlogPostList and
+BlogPostItem. This structure separates concerns between the list container and individual
+post items, promoting reusability and maintainability.
+BlogPostItem Component
+-
+Purpose: Represents a single blog post in the list.
+-
+Props:
+-
+id (string/number): Unique identifier for the post, used as the React key.
+-
+title (string): The post’s title.
+-
+summary (string): The post’s summary text.
+-
+date (string/Date): The publication date.
+-
+url (string): The URL path to the full post.
+-
+Responsibilities:
+-
+Render the title as a clickable link using <Link> from react-router-dom.
+-
+Display the summary and formatted date below the title.
+-
+Apply styles from BlogPostItem.module.css to match the UI/UX design.
+-
+Example Structure:
+<div className={styles.blogPostItem}>
+<Link to={url} className={styles.title}><h2>{title}</h2></Link>
+<p className={styles.summary}>{summary}</p>
+<p className={styles.date}>Published on {formattedDate}</p>
+</div>
+BlogPostList Component
+-
+Purpose: Manages and displays the collection of blog posts.
+-
+Props:
+-
+posts (array): An array of blog post objects, each with id, title, summary,
+date, and url.
+-
+Responsibilities:
+-
+Check if the posts array is empty and render "No blog posts available" if true.
+-
+Otherwise, map over the posts array and render a BlogPostItem for each
+post.
+-
+Use a CSS Grid layout with media queries to adjust the number of columns
+based on screen size.
+-
+Apply styles from BlogPostList.module.css.
+-
+Example Structure:
+<div className={styles.blogPostList}>
+{posts.map((post) => (
+<BlogPostItem
+key={post.id}
+id={post.id}
+title={post.title}
+summary={post.summary}
+date={post.date}
+url={post.url}
+/>
+))}
+</div>
+Architecture Notes
+-
+Parent Component: Assumed to pass the posts array to BlogPostList. Data
+fetching and state management occur outside these components.
+-
+Dependencies: Requires react-router-dom for the Link component.
+-
+File Structure:
+-
+BlogPostItem.js and BlogPostItem.module.css
+-
+BlogPostList.js and BlogPostList.module.css
+UI/UX Designs for Desktop and Mobile Views
+The UI/UX designs provide a visual blueprint for the blog post listing feature, specifying layouts,
+typography, colors, and spacing for both desktop and mobile views.
+Desktop View (1200px and above)
+-
+Layout:
+-
+Three-column grid layout.
+-
+Each BlogPostItem occupies one grid cell.
+-
+Grid gap: 20px horizontally and vertically.
+-
+Typography:
+-
+Title: <h2>, font size 24px, bold, color #333333.
+-
+Summary: <p>, font size 16px, regular, color #666666.
+-
+Date: <p>, font size 14px, regular, color #999999, prefixed with "Published on"
+.
+-
+Styling:
+-
+Background: White (#FFFFFF) with a light gray border (#DDDDDD, 1px).
+-
+Padding inside each item: 20px.
+-
+Title link: No underline, color #333333, hover state changes to #007BFF (blue).
+-
+Dimensions:
+-
+Minimum column width: 300px.
+-
+Maximum width adjusts to fill available space equally across three columns.
+Tablet View (769px to 1199px)
+-
+Layout:
+-
+Two-column grid layout.
+-
+Grid gap: 20px.
+-
+Typography and Styling:
+-
+Same as desktop view for consistency.
+-
+Dimensions:
+-
+Columns adjust to fill available space, with a minimum width of 300px.
+Mobile View (up to 768px)
+-
+Layout:
+-
+Single-column layout.
+-
+Grid gap: 20px (vertical only, as items stack).
+-
+Typography:
+-
+Title: <h2>, font size 20px (slightly reduced for mobile readability).
+-
+Summary: <p>, font size 14px.
+-
+Date: <p>, font size 12px.
+-
+Styling:
+-
+Same colors and border as desktop.
+-
+Padding: 15px (slightly reduced for smaller screens).
+-
+Dimensions:
+-
+Full width of the screen, minus any container padding (e.g., 10px on each side).
+Visual Notes
+-
+Consistency: Fonts should be a sans-serif family (e.g., Arial or Roboto) across all
+views.
+-
+Spacing: Maintain 20px gaps between items unless constrained by screen size.
+-
+No Images: The design focuses on text-only content (title, summary, date) unless
+otherwise specified.
+Reference Designs
+Desktop View:
+Tablet View:
+Mobile view:
+Usage Example
+To illustrate how these components work together, here’s an example of how a parent
+component might use BlogPostList:
+import React from 'react';
+import BlogPostList from '
+./BlogPostList';
+const samplePosts = [
+{
+id: '1'
+,
+title: 'Getting Started with React'
+,
+summary: 'Learn the basics of React and build your first application.
+'
+,
+date: '2023-01-01'
+,
+url: '/posts/1'
+,
+},
+{
+id: '2'
+,
+title: 'CSS Grid vs. Flexbox'
+,
+summary: 'A comparison of two powerful layout systems in CSS.
+'
+,
+date: '2023-02-15'
+,
+url: '/posts/2'
+,
+},
+{
+id: '3'
+,
+title: 'Accessibility in Web Development'
+,
+summary: 'Tips for making your web applications more accessible.
+'
+,
+date: '2023-03-10'
+,
+url: '/posts/3'
+,
+},
+];
+const App = () => {
+return (
+<div>
+<h1>Blog Posts</h1>
+<BlogPostList posts={samplePosts} />
+</div>
+);
+};
+export default App;
+This provided content gives you everything needed to implement the blog post listing feature:
+detailed requirements, a clear component structure, and specific UI/UX designs for desktop and
+mobile views. You can now proceed with coding the BlogPostList and BlogPostItem
+components, ensuring responsiveness, accessibility, and alignment with the specified designs.
+Let me know if you need further assistance with the implementation!

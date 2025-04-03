@@ -1,0 +1,52 @@
+/* src/App.css */
+
+/* ===== MOBILE VIEW (up to 768px) ===== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px;
+  font-family: Arial, sans-serif;
+}
+
+.title {
+  font-size: 2rem;
+  color: #333333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+  
+  .title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+}
+
+/* ===== TABLET VIEW (769px to 1199px) ===== */
+@media (min-width: 769px) and (max-width: 1199px) {
+  .container {
+    padding: 15px;
+  }
+  
+  .title {
+    font-size: 2.25rem;
+    margin-bottom: 25px;
+  }
+}
+
+/* ===== DESKTOP VIEW (1200px and above) ===== */
+@media (min-width: 1200px) {
+  .container {
+    padding: 20px;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+  }
+}
