@@ -3,7 +3,7 @@ import styles from './BlogPostForm.module.css';
 
 const BlogPostForm = ({ post, onSubmit }) => {
   const [title, setTitle] = useState(post?.title || '');
-  const [content, setContent] = useState(post?.content || '');
+  const [content, setContent] = useState(post?.content ? post.content.replace(/<[^>]*>/g, '') : '');
   const [author, setAuthor] = useState(post?.author || '');
   const [date, setDate] = useState(post?.date || '');
   const [errors, setErrors] = useState({});
@@ -20,8 +20,49 @@ const BlogPostForm = ({ post, onSubmit }) => {
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
     } else {
-      onSubmit({ title, content, author, date });
+      // Format content with paragraphs
+      const formattedContent = content
+        .split('\n\n')
+        .map(paragraph => paragraph.trim())
+        .filter(paragraph => paragraph.length > 0)
+        .map(paragraph => `<p>${paragraph}</p>`)
+        .join('\n');
+
+      onSubmit({ 
+        title, 
+        content: formattedContent, 
+        author, 
+        date 
+      });
     }
+  };
+
+  const handleFormat = (type) => {
+    const textarea = document.getElementById('content');
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const selectedText = content.substring(start, end);
+    let formattedText = '';
+
+    switch (type) {
+      case 'bold':
+        formattedText = `**${selectedText}**`;
+        break;
+      case 'italic':
+        formattedText = `*${selectedText}*`;
+        break;
+      case 'bullet':
+        formattedText = `\n• ${selectedText}`;
+        break;
+      case 'number':
+        formattedText = `\n1. ${selectedText}`;
+        break;
+      default:
+        formattedText = selectedText;
+    }
+
+    const newContent = content.substring(0, start) + formattedText + content.substring(end);
+    setContent(newContent);
   };
 
   return (
@@ -43,6 +84,12 @@ const BlogPostForm = ({ post, onSubmit }) => {
       <div className={styles.formGroup}>
         <label htmlFor="content" className={styles.label}>Content</label>
         <div className={styles.inputWrapper}>
+          <div className={styles.formatToolbar}>
+            <button type="button" onClick={() => handleFormat('bold')} className={styles.formatButton}>B</button>
+            <button type="button" onClick={() => handleFormat('italic')} className={styles.formatButton}>I</button>
+            <button type="button" onClick={() => handleFormat('bullet')} className={styles.formatButton}>•</button>
+            <button type="button" onClick={() => handleFormat('number')} className={styles.formatButton}>#</button>
+          </div>
           <textarea
             id="content"
             className={`${styles.textarea} ${errors.content ? styles.inputError : ''}`}

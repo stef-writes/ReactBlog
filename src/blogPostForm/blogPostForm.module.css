@@ -22,11 +22,15 @@
   color: #333333;
   text-align: right;
   padding-right: 10px;
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
 }
 
 /* Input wrapper to contain input and error message */
 .inputWrapper {
   flex: 0 0 80%;
+  position: relative;
 }
 
 /* Base input styling */
@@ -63,6 +67,7 @@
   display: flex;
   justify-content: flex-end;
   margin-top: 20px;
+  text-align: right;
 }
 
 /* Submit button styling */
@@ -148,5 +153,14 @@
   
   .submitButton {
     width: 100%;
+  }
+  
+  .formatToolbar {
+    padding: 4px;
+    gap: 4px;
+  }
+  
+  .formatButton {
+    padding: 2px 6px;
   }
 }
