@@ -1,0 +1,171 @@
+/* ===== MOBILE VIEW (up to 768px) ===== */
+.blogPostDetail {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: Arial, Roboto, sans-serif;
+}
+
+.header {
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.metadata {
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #EEEEEE;
+}
+
+.author {
+  font-size: 14px;
+  color: #666666;
+  margin-bottom: 5px;
+}
+
+.date {
+  font-size: 12px;
+  color: #999999;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.content {
+  font-size: 14px;
+  line-height: 1.4;
+  color: #333333;
+  margin-top: 20px;
+}
+
+.content p {
+  margin-bottom: 1.5em;
+}
+
+.content h2 {
+  font-size: 20px;
+  margin: 1.5em 0 1em;
+  color: #333333;
+}
+
+.content img {
+  max-width: 100%;
+  height: auto;
+  margin: 1.5em 0;
+  border-radius: 4px;
+}
+
+.content a {
+  color: #007BFF;
+  text-decoration: underline;
+}
+
+.content a:hover {
+  color: #0056b3;
+}
+
+.footer {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #EEEEEE;
+}
+
+.backButton {
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+
+.backButton:hover {
+  background-color: #0056b3;
+}
+
+.notFoundContainer {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.notFound {
+  text-align: center;
+  color: #666666;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+/* ===== TABLET VIEW (769px to 1199px) ===== */
+@media (min-width: 769px) {
+  .blogPostDetail {
+    max-width: 90%;
+    padding: 30px;
+  }
+
+  .title {
+    font-size: 32px;
+  }
+
+  .author {
+    font-size: 16px;
+  }
+
+  .date {
+    font-size: 14px;
+  }
+
+  .content {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  .backButton {
+    font-size: 16px;
+    padding: 12px 18px;
+  }
+}
+
+/* ===== DESKTOP VIEW (1200px and above) ===== */
+@media (min-width: 1200px) {
+  .blogPostDetail {
+    max-width: 800px;
+    padding: 40px;
+  }
+
+  .title {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+
+  .author {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .date {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .content {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-top: 30px;
+  }
+  
+  .backButton {
+    font-size: 16px;
+    padding: 12px 20px;
+  }
+} 
