@@ -1,0 +1,152 @@
+/* BlogPostForm.module.css */
+
+/* Main form container */
+.blogPostForm {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, Roboto, sans-serif;
+}
+
+/* Form group - container for each label + input pair */
+.formGroup {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+}
+
+/* Label styling */
+.label {
+  flex: 0 0 20%;
+  font-size: 16px;
+  color: #333333;
+  text-align: right;
+  padding-right: 10px;
+}
+
+/* Input wrapper to contain input and error message */
+.inputWrapper {
+  flex: 0 0 80%;
+}
+
+/* Base input styling */
+.input, .textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #CCCCCC;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #333333;
+  background-color: #FFFFFF;
+}
+
+/* Input focus styling */
+.input:focus, 
+.textarea:focus {
+  outline: none;
+  border-color: #007BFF;
+}
+
+/* Error state styling */
+.inputError {
+  border-color: #FF0000;
+}
+
+.error {
+  color: #FF0000;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+/* Form actions container */
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+/* Submit button styling */
+.submitButton {
+  padding: 8px 20px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.submitButton:disabled {
+  background-color: #CCCCCC;
+  cursor: not-allowed;
+}
+
+/* Content editor wrapper */
+.contentEditorWrapper {
+  border: 1px solid #CCCCCC;
+  border-radius: 4px;
+}
+
+/* Format toolbar */
+.formatToolbar {
+  padding: 8px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #CCCCCC;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.formatLabel {
+  font-size: 14px;
+  color: #333333;
+  margin-right: 8px;
+}
+
+.formatButton {
+  padding: 4px 8px;
+  background: none;
+  border: 1px solid #CCCCCC;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333333;
+}
+
+/* Mobile layout (up to 768px) */
+@media (max-width: 768px) {
+  .blogPostForm {
+    padding: 15px;
+  }
+  
+  .formGroup {
+    flex-direction: column;
+    margin-bottom: 15px;
+  }
+  
+  .label {
+    flex: none;
+    text-align: left;
+    padding-right: 0;
+    margin-bottom: 5px;
+    font-size: 14px;
+  }
+  
+  .inputWrapper {
+    flex: none;
+  }
+  
+  .input,
+  .textarea,
+  .submitButton {
+    font-size: 14px;
+  }
+  
+  .error {
+    font-size: 12px;
+  }
+  
+  .submitButton {
+    width: 100%;
+  }
+}
