@@ -4,13 +4,7 @@
   margin: 0 auto;
   padding: 20px;
   background-color: #FFFFFF;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-family: Arial, Roboto, sans-serif;
-}
-
-.header {
-  margin-bottom: 20px;
 }
 
 .title {
@@ -19,12 +13,6 @@
   color: #333333;
   margin-bottom: 15px;
   line-height: 1.3;
-}
-
-.metadata {
-  margin-bottom: 20px;
-  padding-bottom: 15px;
-  border-bottom: 1px solid #EEEEEE;
 }
 
 .author {
@@ -36,7 +24,6 @@
 .date {
   font-size: 12px;
   color: #999999;
-  display: block;
   margin-bottom: 5px;
 }
 
@@ -61,7 +48,6 @@
   max-width: 100%;
   height: auto;
   margin: 1.5em 0;
-  border-radius: 4px;
 }
 
 .content a {
@@ -73,37 +59,11 @@
   color: #0056b3;
 }
 
-.footer {
-  margin-top: 30px;
-  padding-top: 20px;
-  border-top: 1px solid #EEEEEE;
-}
-
-.backButton {
-  background-color: #007BFF;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.2s ease;
-}
-
-.backButton:hover {
-  background-color: #0056b3;
-}
-
-.notFoundContainer {
-  text-align: center;
-  padding: 40px 20px;
-}
-
 .notFound {
   text-align: center;
   color: #666666;
   font-size: 18px;
-  margin-bottom: 20px;
+  margin: 40px 0;
 }
 
 /* ===== TABLET VIEW (769px to 1199px) ===== */
@@ -128,11 +88,6 @@
   .content {
     font-size: 16px;
     line-height: 1.5;
-  }
-  
-  .backButton {
-    font-size: 16px;
-    padding: 12px 18px;
   }
 }
 
@@ -162,10 +117,5 @@
     font-size: 18px;
     line-height: 1.6;
     margin-top: 30px;
-  }
-  
-  .backButton {
-    font-size: 16px;
-    padding: 12px 20px;
   }
 } 

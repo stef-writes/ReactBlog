@@ -1,9 +1,53 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import BlogPostList from './blog-list-component/BlogPostList';  // Container component -> renders list of BlogPostItems
 import BlogPostDetail from './blogPostDetail/BlogPostDetail';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';  // Enables client-side routing
+import BlogPostForm from './blogPostForm/blogPostForm';
+import { BrowserRouter, Routes, Route, useNavigate, useParams } from 'react-router-dom';  // Enables client-side routing
 import { mockBlogPosts } from './blogPostDetail/mockPosts';  // Updated import path
+
+// Parent component that provides post data and handles form submission
+const BlogPostFormPage = ({ isEditMode }) => {
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const [posts, setPosts] = useState(mockBlogPosts);
+  
+  // Find the post to edit if in edit mode
+  const postToEdit = isEditMode ? posts.find(post => post.id === parseInt(id)) : null;
+  
+  // Handle form submission
+  const handleSubmit = (formData) => {
+    return new Promise((resolve) => {
+      if (isEditMode) {
+        // Update existing post
+        setPosts(posts.map(post => 
+          post.id === parseInt(id) ? { ...post, ...formData } : post
+        ));
+      } else {
+        // Create new post
+        const newPost = {
+          id: posts.length + 1,
+          ...formData
+        };
+        setPosts([...posts, newPost]);
+      }
+      
+      // Simulate a network delay
+      setTimeout(() => {
+        // Navigate back to the list view
+        navigate('/');
+        resolve();
+      }, 500);
+    });
+  };
+  
+  return (
+    <BlogPostForm 
+      post={postToEdit} 
+      onSubmit={handleSubmit} 
+    />
+  );
+};
 
 function App() {
   return (
@@ -23,6 +67,8 @@ function App() {
               />
             } 
           />
+          <Route path="/create" element={<BlogPostFormPage isEditMode={false} />} />
+          <Route path="/edit/:id" element={<BlogPostFormPage isEditMode={true} />} />
         </Routes>
       </div>
     </BrowserRouter>

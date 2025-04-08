@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './BlogPostDetail.module.css';
 
 const BlogPostDetail = ({ title, content, author, date }) => {
+  // Handle links to open in new tab
+  useEffect(() => {
+    const contentElement = document.querySelector(`.${styles.content}`);
+    if (contentElement) {
+      const links = contentElement.querySelectorAll('a');
+      links.forEach(link => {
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener noreferrer');
+      });
+    }
+  }, [content]);
+
   if (!title || !content || !author || !date) {
-    return <p>Blog post not found.</p>;
+    return <p className={styles.notFound}>Blog post not found.</p>;
   }
 
   const formattedDate = new Date(date).toLocaleDateString('en-US', {
