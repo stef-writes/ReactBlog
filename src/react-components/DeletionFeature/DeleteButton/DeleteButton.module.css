@@ -1,0 +1,29 @@
+/* ===== MOBILE VIEW (up to 768px) ===== */
+.deleteButton {
+  background: #FF0000;
+  color: white;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  width: 100%;
+  min-height: 44px;
+}
+
+.deleteButton:focus {
+  outline: 2px solid #007BFF;
+}
+
+/* ===== TABLET VIEW (769px to 1199px) ===== */
+@media (min-width: 769px) {
+  .deleteButton {
+    width: auto;
+  }
+}
+
+/* ===== DESKTOP VIEW (1200px and above) ===== */
+@media (min-width: 1200px) {
+  .deleteButton {
+    width: auto;
+  }
+} 
