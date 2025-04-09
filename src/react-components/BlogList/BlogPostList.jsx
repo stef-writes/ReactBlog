@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import BlogPostItem from '../blogPost/BlogPostItem';  // Child component -> renders single post
+import BlogPostItem from '../BlogPost/BlogPostItem';  // Child component -> renders single post
 import styles from './BlogPostList.module.css';  // Scoped CSS -> prevents style conflicts
 
 const BlogPostList = ({ posts }) => {  // Destructured props from App.jsx
@@ -10,9 +10,6 @@ const BlogPostList = ({ posts }) => {  // Destructured props from App.jsx
 
   return (
     <div>
-      <div className={styles.header}>
-        <Link to="/create" className={styles.createButton}>Create New Post</Link>
-      </div>
       <div className={styles.blogPostList}>  {/* Grid container -> responsive layout */}
         {posts.map((post) => (  // Transform data -> BlogPostItem components
           <BlogPostItem
@@ -21,9 +18,12 @@ const BlogPostList = ({ posts }) => {  // Destructured props from App.jsx
             title={post.title}
             summary={post.summary}
             date={post.date}
-            url={post.url}
+            url={`/posts/${post.id}`}
           />
         ))}
+      </div>
+      <div className={styles.header}>
+        <Link to="/create" className={styles.createButton}>Create New Post</Link>
       </div>
     </div>
   );

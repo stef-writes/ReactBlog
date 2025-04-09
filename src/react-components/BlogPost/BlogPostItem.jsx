@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';  // Client-side navigation component
 import styles from './BlogPostItem.module.css';  // Scoped CSS -> prevents style conflicts
 
-const BlogPostItem = ({ id, title, summary, date, url }) => {  // Destructured props from BlogPostList
+const BlogPostItem = ({ title, summary, date, url }) => {  // Destructured props from BlogPostList
     const formattedDate = new Date(date).toLocaleDateString('en-US', {  // Format ISO date -> readable string
       year: 'numeric', 
       month: 'long', 
