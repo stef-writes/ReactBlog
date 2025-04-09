@@ -2,8 +2,20 @@ import React, { useState } from 'react';
 import styles from './BlogPostForm.module.css';
 
 const BlogPostForm = ({ post, onSubmit }) => {
+  // Convert HTML to markdown when loading content
+  const convertHtmlToMarkdown = (html) => {
+    if (!html) return '';
+    return html
+      .replace(/<h1>(.*?)<\/h1>/g, '# $1\n')
+      .replace(/<h2>(.*?)<\/h2>/g, '## $1\n')
+      .replace(/<strong>(.*?)<\/strong>/g, '**$1**')
+      .replace(/<em>(.*?)<\/em>/g, '*$1*')
+      .replace(/<p>(.*?)<\/p>/g, '$1\n')
+      .trim();
+  };
+
   const [title, setTitle] = useState(post?.title || '');
-  const [content, setContent] = useState(post?.content ? post.content.replace(/<[^>]*>/g, '') : '');
+  const [content, setContent] = useState(post?.content ? convertHtmlToMarkdown(post.content) : '');
   const [author, setAuthor] = useState(post?.author || '');
   const [date, setDate] = useState(post?.date || '');
   const [errors, setErrors] = useState({});
@@ -20,12 +32,25 @@ const BlogPostForm = ({ post, onSubmit }) => {
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
     } else {
-      // Format content with paragraphs
+      // Format content with headers, bold, italic, and paragraphs
       const formattedContent = content
-        .split('\n\n')
-        .map(paragraph => paragraph.trim())
-        .filter(paragraph => paragraph.length > 0)
-        .map(paragraph => `<p>${paragraph}</p>`)
+        .split('\n')
+        .map(line => {
+          line = line.trim();
+          if (!line) return '';
+          
+          // Handle headers first
+          if (line.startsWith('# ')) return `<h1>${line.substring(2)}</h1>`;
+          if (line.startsWith('## ')) return `<h2>${line.substring(3)}</h2>`;
+          
+          // Handle bold and italic within the line
+          line = line
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')  // Bold
+            .replace(/\*(.*?)\*/g, '<em>$1</em>');            // Italic
+          
+          return `<p>${line}</p>`;
+        })
+        .filter(line => line.length > 0)
         .join('\n');
 
       onSubmit({ 
@@ -50,6 +75,12 @@ const BlogPostForm = ({ post, onSubmit }) => {
         break;
       case 'italic':
         formattedText = `*${selectedText}*`;
+        break;
+      case 'h1':
+        formattedText = `\n# ${selectedText}`;
+        break;
+      case 'h2':
+        formattedText = `\n## ${selectedText}`;
         break;
       case 'bullet':
         formattedText = `\n• ${selectedText}`;
@@ -85,6 +116,8 @@ const BlogPostForm = ({ post, onSubmit }) => {
         <label htmlFor="content" className={styles.label}>Content</label>
         <div className={styles.inputWrapper}>
           <div className={styles.formatToolbar}>
+            <button type="button" onClick={() => handleFormat('h1')} className={styles.formatButton}>H1</button>
+            <button type="button" onClick={() => handleFormat('h2')} className={styles.formatButton}>H2</button>
             <button type="button" onClick={() => handleFormat('bold')} className={styles.formatButton}>B</button>
             <button type="button" onClick={() => handleFormat('italic')} className={styles.formatButton}>I</button>
             <button type="button" onClick={() => handleFormat('bullet')} className={styles.formatButton}>•</button>

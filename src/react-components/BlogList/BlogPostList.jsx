@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import BlogPostItem from '../blog-post-component/BlogPostItem';  // Child component -> renders single post
+import BlogPostItem from '../blogPost/BlogPostItem';  // Child component -> renders single post
 import styles from './BlogPostList.module.css';  // Scoped CSS -> prevents style conflicts
 
 const BlogPostList = ({ posts }) => {  // Destructured props from App.jsx

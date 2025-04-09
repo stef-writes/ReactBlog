@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import './App.css';
-import BlogPostList from './blog-list-component/BlogPostList';
-import BlogPostDetail from './blogPostDetail/BlogPostDetail';
-import BlogPostForm from './blogPostForm/blogPostForm';
+import BlogPostList from './react-components/BlogList/BlogPostList';
+import BlogPostDetail from './react-components/BlogPostDetail/BlogPostDetail';
+import BlogPostForm from './react-components/blogPostForm/blogPostForm';
 import { BrowserRouter, Routes, Route, useNavigate, useParams } from 'react-router-dom';
-import { mockBlogPosts } from './blogPostDetail/mockPosts';
+import { mockBlogPosts } from './react-components/BlogPostDetail/mockPosts';
 
 function App() {
   const [posts, setPosts] = useState(mockBlogPosts);
