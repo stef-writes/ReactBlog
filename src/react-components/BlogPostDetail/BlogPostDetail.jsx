@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styles from './BlogPostDetail.module.css';
+import DeleteButton from '../DeletionFeature/DeleteButton/DeleteButton';
+import ConfirmationDialog from '../DeletionFeature/ConfirmationDialog/ConfirmationDialog';
 
 const BlogPostDetail = ({ title, content, author, date }) => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   if (!title || !content || !author || !date) {
     return <p>Blog post not found.</p>;
@@ -20,6 +23,19 @@ const BlogPostDetail = ({ title, content, author, date }) => {
     navigate(`/posts/${id}/edit`);
   };
 
+  const handleDeleteClick = () => {
+    setIsDialogOpen(true);
+  };
+
+  const handleCloseDialog = () => {
+    setIsDialogOpen(false);
+  };
+
+  const handleConfirmDelete = () => {
+    // Deletion logic would go here
+    setIsDialogOpen(false);
+  };
+
   return (
     <div className={styles.blogPostDetail}>
       <div className={styles.header}>
@@ -27,14 +43,20 @@ const BlogPostDetail = ({ title, content, author, date }) => {
         <button 
           onClick={handleEdit} 
           className={styles.editButton}
-          aria-label="Edit this post"
         >
           Edit Post
         </button>
+        <DeleteButton onClick={handleDeleteClick} />
       </div>
       <p className={styles.author}>By {author}</p>
       <p className={styles.date}>Published on {formattedDate}</p>
       <div className={styles.content} dangerouslySetInnerHTML={{ __html: content }} />
+      
+      <ConfirmationDialog 
+        isOpen={isDialogOpen}
+        onClose={handleCloseDialog}
+        onConfirm={handleConfirmDelete}
+      />
     </div>
   );
 };
