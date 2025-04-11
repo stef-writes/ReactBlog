@@ -9,6 +9,14 @@ import { mockBlogPosts } from './react-components/BlogPostDetail/mockPosts';
 
 function App() {
   const [posts, setPosts] = useState(mockBlogPosts);
+  const [comments, setComments] = useState({});  // Comments stored by post ID
+
+  const handleAddComment = (postId, comment) => {
+    setComments(prevComments => ({
+      ...prevComments,
+      [postId]: [...(prevComments[postId] || []), { ...comment, id: Date.now() }]
+    }));
+  };
 
   // Component to handle blog post creation/editing
   const CreateEditPost = () => {
@@ -46,7 +54,11 @@ function App() {
     const post = posts.find(p => p.id === id);
     
     if (!post) return <p>Post not found</p>;
-    return <BlogPostDetail {...post} />;
+    return <BlogPostDetail 
+      {...post} 
+      comments={comments[id] || []}
+      onAddComment={handleAddComment}
+    />;
   };
 
   return (

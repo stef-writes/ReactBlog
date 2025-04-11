@@ -1,0 +1,22 @@
+.commentList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* ===== DESKTOP VIEW (> 768px) ===== */
+@media (min-width: 769px) {
+  .commentList {
+    padding: 20px;
+  }
+}
+
+/* ===== MOBILE VIEW (≤ 768px) ===== */
+@media (max-width: 768px) {
+  .commentList {
+    padding: 10px;
+  }
+}
