@@ -1,0 +1,109 @@
+/* NavBar.module.css */
+
+/* ===== BASE STYLES ===== */
+.navBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #4285F4;
+  color: white;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 44px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+  padding-left: 12px;
+}
+
+.links {
+  display: flex;
+  gap: 32px;
+  padding-right: 12px;
+}
+
+.links a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.mobileMenu {
+  display: none;
+  position: absolute;
+  top: 44px;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.mobileMenu a {
+  display: block;
+  padding: 15px 20px;
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
+  border-bottom: 1px solid #eee;
+}
+
+/* ===== DESKTOP VIEW (1200px and above) ===== */
+@media (min-width: 1200px) {
+  .links {
+    display: flex;
+  }
+
+  .hamburger {
+    display: none;
+  }
+}
+
+/* ===== MOBILE VIEW (up to 768px) ===== */
+@media (max-width: 768px) {
+  .links {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+    margin-right: 12px;
+  }
+
+  .mobileMenu {
+    display: block;
+  }
+}
+
+/* ===== ACCESSIBILITY & INTERACTIONS ===== */
+.navBar a:focus,
+.navBar button:focus {
+  outline: 2px solid #0066cc;
+  outline-offset: 2px;
+}
+
+.navBar a:hover,
+.navBar button:hover {
+  opacity: 0.8;
+}
+
+.navBar a:active,
+.navBar button:active {
+  opacity: 0.6;
+}

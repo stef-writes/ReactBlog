@@ -1,0 +1,52 @@
+/* Layout.module.css */
+
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-top: 44px; /* Match navbar height */
+}
+
+header {
+  height: 44px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.main {
+  flex: 1;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  margin-bottom: 40px; /* Add margin to prevent content from being hidden by footer */
+}
+
+.footer {
+  background-color: #4285F4;
+  color: white;
+  text-align: center;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed; /* Fix footer at bottom */
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+/* ===== MOBILE VIEW (up to 768px) ===== */
+@media (max-width: 768px) {
+  .main {
+    padding: 10px;
+  }
+
+  .footer {
+    font-size: 14px;
+  }
+}
