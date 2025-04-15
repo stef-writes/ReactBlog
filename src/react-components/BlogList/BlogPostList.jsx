@@ -5,7 +5,7 @@ import styles from './BlogPostList.module.css';  // Scoped CSS -> prevents style
 
 const BlogPostList = ({ posts }) => {  // Destructured props from App.jsx
   if (!posts || posts.length === 0) {  // Conditional render for empty state
-    return <p className={styles.noPosts}>No blog posts available.</p>;
+    return <p className={styles.noPosts}>No posts found.</p>;
   }
 
   return (

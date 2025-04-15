@@ -1,0 +1,152 @@
+/* SearchBar.module.css */
+
+/* ===== BASE STYLES ===== */
+
+/* Container for search icon and form */
+.searchContainer {
+  position: relative; 
+}
+
+/* Search form element */
+.searchForm {
+  display: flex;
+  align-items: center;
+}
+
+/* Search input field */
+.searchInput {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 5px; 
+  width: 200px;
+  background-color: white;
+  color: #333; 
+  font-size: 14px; 
+}
+
+/* Focus state for search input */
+.searchInput:focus {
+  border-color: #007bff; 
+  outline: 2px solid #007bff; 
+}
+
+/* Desktop search button */
+.searchButton {
+  padding: 8px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.searchButton:hover {
+  background-color: #0056b3;
+}
+
+/* Mobile search icon button */
+.searchIconButton {
+  background: none;
+  border: none;
+  font-size: 1.5rem; 
+  cursor: pointer;
+  padding: 5px;
+  line-height: 1; 
+  color: white; 
+}
+
+/* Mobile cancel button */
+.cancelButton {
+  padding: 8px 15px;
+  background-color: #6c757d; 
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px; 
+}
+
+.cancelButton:hover {
+  background-color: #5a6268;
+}
+
+/* Accessibility: Hides element visually but keeps for screen readers */
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* ===== DESKTOP VIEW (min-width: 769px - adjusted breakpoint logic) ===== */
+@media (min-width: 769px) {
+    .searchInput {
+        width: 250px; /* Requirement: 200-300px */
+    }
+
+    /* Hide mobile-specific buttons on desktop */
+    .searchIconButton,
+    .cancelButton {
+        display: none;
+    }
+    
+    /* Ensure desktop button is shown */
+    .searchButton {
+        display: inline-block;
+    }
+}
+
+
+/* ===== MOBILE VIEW (up to 768px) ===== */
+@media (max-width: 768px) {
+  /* Show the icon button by default on mobile */
+  .searchIconButton {
+      display: inline-block; 
+      color: white; 
+  }
+
+  /* Hide the form initially on mobile */
+  .searchForm.mobileClosed {
+      display: none;
+  }
+
+  /* Styles when the mobile search is open */
+  .searchForm.mobileOpen {
+    position: absolute; 
+    top: -10px; /* Adjust as needed */
+    left: -15px; /* Adjust as needed */
+    right: -15px; /* Adjust as needed */
+    width: calc(100vw - 30px); 
+    padding: 10px 15px;
+    background-color: white; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 1000;
+    display: flex; 
+    justify-content: space-between; 
+    box-sizing: border-box;
+  }
+  
+  /* Input field adjustments when mobile search is open */
+  .searchForm.mobileOpen .searchInput {
+      flex-grow: 1; 
+      width: auto; 
+      margin-right: 0; 
+      /* Ensure input text is visible on white background */
+      color: #333; 
+  }
+
+  /* Show cancel button only when mobile form is open */
+  .searchForm.mobileOpen .cancelButton {
+      display: inline-block;
+  }
+
+  /* Hide standard desktop search button on mobile */
+  .searchButton {
+      display: none;
+  }
+} 

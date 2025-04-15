@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './NavBar.module.css';
+import SearchBar from '../../SearchBar/SearchBar';
 
-const NavBar = () => {
+const NavBar = ({ onSearch }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   const toggleMobileMenu = () => {
@@ -12,10 +13,13 @@ const NavBar = () => {
   return (
     <nav className={styles.navBar}>
       <Link to="/" className={styles.logo}>Blog Application</Link>
-      <div className={styles.links}>
-        <Link to="/">Home</Link>
-        <Link to="/blog">Blog</Link>
-        <Link to="/about">About</Link>
+      <div className={styles.navContent}>
+        <div className={styles.links}>
+          <Link to="/">Home</Link>
+          <Link to="/blog">Blog</Link>
+          <Link to="/about">About</Link>
+        </div>
+        <SearchBar onSearch={onSearch} />
       </div>
       <button
         className={styles.hamburger}
